@@ -6,7 +6,7 @@ function [reactForces] = calcReactForces(segCenter,segPropWeight,kgMass,RFoot,LF
 bodyWeight = kgMass * 9.8; %units in N
 
 %% Sum forces in x and z to evaluate horizontal movement
-
+marDistance = 
 
 %% Sum forces in y and z to evaluate vertical movement
 

@@ -3,7 +3,7 @@ clc
 clear all
 close all
 
-cd('/Users/MT/Documents/GitHub/MuscleActivationLowerExtremities');
+cd('/Users/MT/Documents/GitHub/MUscleActivation_LowerExtremities');
 
 addpath(genpath(cd)) %%add the current folder & subfolders to the path (so Matlab can see the BTK methods)
 
@@ -11,7 +11,7 @@ addpath(genpath(cd)) %%add the current folder & subfolders to the path (so Matla
 
 for iter = 1:3
     % Identify location where files are stored
-    cd('/Users/MT/Google Drive File Stream/My Drive/MotionCaptureProjects/COMPhaseSpacePlanningData/Data/Sub01/Trials');
+    cd('/Users/MT/Google Drive File Stream/My Drive/MotionCaptureProjects/COMPhaseSpacePlanningData/mat files');
 %     addpath(genpath(cd))
     
     switch iter
@@ -57,8 +57,8 @@ for iter = 1:3
     
     %% calcSegCOM function
     %Function outputs totalCOM considering marker location
-    [segCenter,ankle] = calcPhaseSpaceSegCOM(sub01.(trialName).data_mar_dim_frame,sub01.(trialName).markerLabels,trialName); %,markerID)
-        
+    [segCenter] = calcPhaseSpaceSegCOM(sub01.(trialName).data_mar_dim_frame,sub01.(trialName).markerLabels,trialName); %,markerID)
+    
     %% calcSegWeightCOM function
     %Function outputs totalCOM depending on seg weight
     [totalCOMXYZ] = calcSegWeightCOM(segCenter,segPropWeight);
@@ -66,9 +66,6 @@ for iter = 1:3
     %% locEmptySegFrames function
     % Function outputs marker frames evaluation
     [emptyFrames] = locEmptySegFrames(segCenter,totalCOMXYZ);
-    
-    LAnkle_marDistance = sqrt((ankle.LAnkleOut(1,:) - ankle.LForefootOut(1,:)).^2 + (ankle.LAnkleOut(2,:) - ankle.LForefootOut(2,:)).^2);
-    RAnkle_marDistance = sqrt((ankle.RAnkleOut(1,:) - ankle.RForefootOut(1,:)).^2 + (ankle.RAnkleOut(2,:) - ankle.RForefootOut(2,:)).^2);
     
     %% calcMar_Vel_Acc_Jerk function
     %function outputs vel,acc, and jerk values for LFoot and RFoot

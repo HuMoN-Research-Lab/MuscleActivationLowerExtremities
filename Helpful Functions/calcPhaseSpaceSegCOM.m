@@ -1,9 +1,10 @@
-function [segCenter] = calcPhaseSpaceSegCOM(data_mar_dim_frame,markerLabels,trialName) %,markerID)
+function [segCenter,ankle] = calcPhaseSpaceSegCOM(data_mar_dim_frame,markerLabels,trialName) %,markerID)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %calcSegCOM find the center position for each anatomical segment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Initial conditions
 segCenter = [];
+ankle = [];
 
 %% Head Markers
 %Store markers data into segCenter for the Head
@@ -412,6 +413,10 @@ segCenter.RLegCenter_mar_dim_frame(3,:) =     (RLegPosZ).';
 LHeelBack = getMarker(data_mar_dim_frame,markerLabels,'LHEE');
 LForefootOut= getMarker(data_mar_dim_frame,markerLabels,'LTOE');
 
+%Output data for joint analysis
+ankle.LAnkleOut =       LAnkleOut;
+ankle.LForefootOut =    LForefootOut;
+
 %x values located on corresponding column
 LFootPosX(:,1) =                 LAnkleOut(1,:)';
 LFootPosX(:,2) =                 LHeelBack(1,:)';
@@ -440,6 +445,10 @@ segCenter.LFootCenter_mar_dim_frame(3,:) =     (LFootPosZ).';
 %Includes: RANK, RHEE, and RTOE
 RHeelBack = getMarker(data_mar_dim_frame,markerLabels,'RHEE');
 RForefootOut= getMarker(data_mar_dim_frame,markerLabels,'RTOE');
+
+%Output data for joint analysis
+ankle.RAnkleOut =       RAnkleOut;
+ankle.RForefootOut =    RForefootOut;
 
 %x values located on corresponding column
 RFootPosX(:,1) =                 RAnkleOut(1,:)';
